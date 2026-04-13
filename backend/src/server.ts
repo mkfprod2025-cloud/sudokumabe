@@ -59,7 +59,7 @@ app.post('/api/tournament/submit', (req: Request, res: Response) => {
  * Récupérer le profil d'un joueur
  */
 app.get('/api/player/:name', (req: Request, res: Response) => {
-  const profile = tournament.getPlayerProfile(req.params.name);
+  const profile = tournament.getPlayerProfile(req.params.name as string);
   res.json(profile);
 });
 
