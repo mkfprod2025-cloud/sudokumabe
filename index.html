@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudokumabe - Infinium</title>
+    <script type="module" crossorigin src="/sudokumabe/assets/index-BZHGn_Co.js"></script>
+    <link rel="stylesheet" crossorigin href="/sudokumabe/assets/index-Cc60bycs.css">
+  </head>
+  <body>
+    <div id="bg-overlay"></div>
+    
+    <div id="player-modal" class="modal">
+      <div class="modal-content">
+        <h2>Bienvenue sur Sudokumabe</h2>
+        <p>Choisis ton pseudonyme pour le tournoi :</p>
+        <input type="text" id="player-name-input" placeholder="Ton pseudo..." maxlength="15">
+        <button id="start-game-btn">Rejoindre le Tournoi</button>
+      </div>
+    </div>
+
+    <div id="app">
+      <header>
+        <h1>🧩 SUDOKUMABE</h1>
+        <div id="stats">
+          <span>Joueur: <b id="player-display">---</b></span>
+          <span>Elo: <b id="elo-display">1000</b></span>
+          <span>Score: <b id="score-display">0</b></span>
+          <span>Difficulté: <b id="diff-display">SE 4.0</b></span>
+        </div>
+      </header>
+
+      <main>
+        <div id="sudoku-container">
+          <div id="grid-container"></div>
+        </div>
+
+        <aside id="controls">
+          <div class="timer">Temps: <span id="timer-display">00:00</span></div>
+          
+          <div id="leaderboard">
+            <h3>🏆 Leaderboard (Bucket)</h3>
+            <ul id="leaderboard-list">
+              <li>Rejoins une partie...</li>
+            </ul>
+          </div>
+
+          <div class="num-pad">
+            <button class="num-btn">1</button>
+            <button class="num-btn">2</button>
+            <button class="num-btn">3</button>
+            <button class="num-btn">4</button>
+            <button class="num-btn">5</button>
+            <button class="num-btn">6</button>
+            <button class="num-btn">7</button>
+            <button class="num-btn">8</button>
+            <button class="num-btn">9</button>
+            <button id="erase-btn" class="action-btn">🗑️</button>
+          </div>
+          <button id="new-game-btn">Nouvelle Partie</button>
+          
+          <div id="customization">
+            <h3>🎨 Personnalisation</h3>
+            <label for="bg-upload">Changer le fond :</label>
+            <input type="file" id="bg-upload" accept="image/*" />
+            <label for="bg-opacity">Opacité du fond :</label>
+            <input type="range" id="bg-opacity" min="0" max="1" step="0.1" value="0.5" />
+          </div>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>
