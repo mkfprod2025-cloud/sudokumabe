@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import * as logic from './engine/logic';
-import { SudokuGenerator } from './engine/generator';
-import { TournamentManager } from './engine/tournament';
+import * as logic from './engine/logic.js';
+import { SudokuGenerator } from './engine/generator.js';
+import { TournamentManager } from './engine/tournament.js';
 
 dotenv.config();
 

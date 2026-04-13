@@ -3,7 +3,7 @@
  * Handles asynchronous buckets of 50 players and leaderboard.
  */
 
-import * as logic from './logic';
+import * as logic from './logic.js';
 
 export interface PlayerProfile {
   name: string;

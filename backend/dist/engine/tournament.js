@@ -2,7 +2,7 @@
  * Sudokumabe Tournament Manager
  * Handles asynchronous buckets of 50 players and leaderboard.
  */
-import * as logic from './logic';
+import * as logic from './logic.js';
 export class TournamentManager {
     buckets = new Map();
     players = new Map();

@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { SudokuGenerator } from './engine/generator';
-import { TournamentManager } from './engine/tournament';
+import { SudokuGenerator } from './engine/generator.js';
+import { TournamentManager } from './engine/tournament.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
