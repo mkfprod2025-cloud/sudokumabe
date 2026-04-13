@@ -31,8 +31,8 @@ app.get('/api/tournament/join', (req, res) => {
  * Soumettre un score à un bucket et mettre à jour le Elo
  */
 app.post('/api/tournament/submit', (req, res) => {
-    const { bucketId, playerName, score, timeTaken } = req.body;
-    const result = tournament.submitScore(bucketId, playerName, score, timeTaken);
+    const { bucketId, playerName, timeTaken, difficulty } = req.body;
+    const result = tournament.submitScore(bucketId, playerName, timeTaken, difficulty || 40);
     if (!result) {
         return res.status(404).json({ error: 'Bucket non trouvé' });
     }

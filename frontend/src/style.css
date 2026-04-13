@@ -89,6 +89,11 @@ main {
   background: rgba(255, 255, 255, 0.2);
 }
 
+.cell.error {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
 .cell.selected {
   background: rgba(0, 123, 255, 0.4);
 }

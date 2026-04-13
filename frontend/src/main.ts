@@ -97,8 +97,9 @@ async function initTournamentGame() {
 }
 
 async function submitTournamentScore() {
-  // Calcul du score (même formule que le backend pour l'affichage immédiat)
-  const basePoints = Math.round(Math.pow(seDifficulty, 2) * 10);
+  // Calcul indicatif du score pour l'UI
+  const seLevel = seDifficulty;
+  const basePoints = Math.round(Math.pow(seLevel, 2.5) * 5);
   const finalScore = Math.round((basePoints * referenceTime) / Math.max(1, timer));
   
   document.getElementById('score-display')!.textContent = finalScore.toString();
@@ -110,12 +111,13 @@ async function submitTournamentScore() {
       body: JSON.stringify({
         bucketId,
         playerName,
-        score: finalScore,
-        timeTaken: timer
+        timeTaken: timer,
+        difficulty: seDifficulty * 10
       })
     });
     
     const data = await response.json();
+    document.getElementById('elo-display')!.textContent = data.player.elo.toString();
     updateLeaderboardUI(data.leaderboard);
   } catch (err) {
     console.error("Échec de la soumission :", err);
@@ -126,7 +128,7 @@ function updateLeaderboardUI(players: any[]) {
   const list = document.getElementById('leaderboard-list')!;
   list.innerHTML = players.map((p, index) => `
     <li>
-      <span>${index + 1}. ${p.playerName}</span>
+      <span>${index + 1}. ${p.playerName} ${p.playerName === playerName ? '(Toi)' : ''}</span>
       <b>${p.score} pts</b>
     </li>
   `).join('');
@@ -169,10 +171,18 @@ function selectCell(r: number, c: number) {
 }
 
 function fillCell(r: number, c: number, val: number) {
-  const cell = document.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+  const cell = document.querySelector(`[data-row="${r}"][data-col="${c}"]`) as HTMLElement;
   if (cell && !cell.classList.contains('fixed')) {
     currentGrid[r][c] = val;
     cell.textContent = val === 0 ? '' : val.toString();
+    
+    // Feedback visuel si faux
+    if (val !== 0 && val !== solution[r][c]) {
+      cell.classList.add('error');
+    } else {
+      cell.classList.remove('error');
+    }
+    
     checkWin();
   }
 }

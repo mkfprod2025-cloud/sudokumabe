@@ -40,11 +40,18 @@ export class TournamentManager {
     /**
      * Enregistre un score et recalcule le Elo du joueur.
      */
-    submitScore(bucketId, playerName, score, timeTaken) {
+    submitScore(bucketId, playerName, timeTaken, difficulty) {
         const bucket = this.buckets.get(bucketId);
         if (!bucket)
             return null;
+        // Éviter les doublons dans un même bucket
+        const existingEntry = bucket.players.find(p => p.playerName === playerName);
+        if (existingEntry)
+            return { bucket, player: this.getPlayerProfile(playerName) };
         const profile = this.getPlayerProfile(playerName);
+        // Calcul du score côté serveur pour éviter la triche
+        const basePoints = logic.getBasePoints(difficulty / 10);
+        const score = logic.calculateGameScore(basePoints, difficulty * 5, timeTaken);
         const entry = {
             playerName,
             score,
