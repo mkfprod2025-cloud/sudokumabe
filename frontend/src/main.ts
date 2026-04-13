@@ -1,6 +1,6 @@
 import './style.css'
 
-const API_BASE = (import.meta.env.VITE_API_BASE || 'http://localhost:5000') + '/api';
+const API_BASE = (import.meta.env.VITE_API_BASE || 'https://sudokumabe-api.onrender.com') + '/api';
 let playerName: string = "";
 let bucketId: string = "";
 let seDifficulty: number = 4.0;
