@@ -1,7 +1,7 @@
 # 🧩 Sudokumabe - Infinium Sudoku Engine
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/amber/sudokumabe/actions/workflows/ci.yml/badge.svg)](https://github.com/amber/sudokumabe/actions)
+[![Build Status](https://github.com/mkfprod2025-cloud/sudokumabe/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/mkfprod2025-cloud/sudokumabe/actions)
 
 **Sudokumabe** est un moteur de Sudoku à génération procédurale infinie conçu pour la compétition asynchrone.
 
@@ -14,7 +14,7 @@
 
 ## 🛠️ Stack Technique
 - **Backend** : Node.js, TypeScript, Express.
-- **Frontend** : Vite, React (ou Vanilla TS), Tailwind CSS.
+- **Frontend** : Vite, Vanilla TS, Tailwind CSS.
 - **Database** : MongoDB / PostgreSQL (pour les classements).
 - **Hosting** : GitHub Pages (Frontend) & Render/Heroku (Backend).
 
@@ -26,7 +26,7 @@ sudoku-infinium/
 ```
 
 ## ⚙️ Installation & Développement
-1. Cloner le repo : `git clone https://github.com/USER/sudokumabe.git`
+1. Cloner le repo : `git clone https://github.com/mkfprod2025-cloud/sudokumabe.git`
 2. Backend : `cd backend && npm install && npm run dev`
 3. Frontend : `cd frontend && npm install && npm run dev`
 

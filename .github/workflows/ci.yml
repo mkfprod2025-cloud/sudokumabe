@@ -1,4 +1,4 @@
-name: Sudokumabe CI
+name: Sudokumabe CI/CD
 
 on:
   push:
@@ -6,29 +6,39 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  build-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install Frontend Deps
-        run: cd frontend && npm install
-      - name: Build Frontend
-        run: cd frontend && npm run build
+permissions:
+  contents: write
 
-  build-backend:
+jobs:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install Backend Deps
-        run: cd backend && npm install
+          cache: 'npm'
+          cache-dependency-path: |
+            frontend/package-lock.json
+            backend/package-lock.json
+
       - name: Build Backend
-        run: cd backend && npm run build
+        run: |
+          cd backend
+          npm install
+          npm run build
+
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build -- --base=/sudokumabe/
+
+      - name: Deploy Frontend to GH Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist
